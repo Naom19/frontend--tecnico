@@ -8,4 +8,8 @@
     function add(): void {
         todos = todos.concat({ done: false, text: ''});
     }
+
+    function clear(): void {
+        todos = todos.filter((task:App.Todo) => !task.done);
+    }
 </script>
