@@ -1,5 +1,6 @@
 <script lang="ts">
     import { text } from "@sveltejs/kit";
+    import '../src/global.css';
 
     let todos: App.Todo[] = [
         { done: false, text: 'This is a To Do example'}
@@ -49,6 +50,7 @@
 
     button {
         background-color: #17b794;
+        font-family: 'Nunito Sans', sans-serif;
         color: #01005e;
     }
 </style>
