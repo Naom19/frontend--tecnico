@@ -1,59 +1,65 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+    import { text } from "@sveltejs/kit";
+    import '../global.css';
+
+    let todos: App.Todo[] = [
+        { done: false, text: 'This is a To Do example'}
+    ];
+
+    function add(): void {
+        todos = todos.concat({ done: false, text: ''});
+    }
+
+    function clear(): void {
+        todos = todos.filter((task:App.Todo) => !task.done);
+    }
+
+    let pending: number;
+    $: pending = todos.filter(task => !task.done).length;
+
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
+<div class="navBar">
+	<h1>Task Master</h1>
+</div>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
 
-		to your new<br />SvelteKit app
-	</h1>
+{#each todos as todo (todo.text)}
+    <div class:done = {todo.done}>
+        <input type="checkbox"
+         bind:checked={todo.done} />
+        <input placeholder="Add a new to do..." 
+         value={todo.text} />
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+    </div>
+    
+{/each}
 
-	<Counter />
-</section>
+<p>{pending} pending</p>
+
+<button on:click={add}>Add</button>
+
+<button on:click={clear}>Clear completed</button>
 
 <style>
-	section {
+
+	.navBar {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
+		justify-content: space-around;
+		
+		background-color: #22267b;
 	}
+    h1 {
+        color: #ffffff;
+    }
+    
+    .done {
+        opacity: 0.3;
+    }
 
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
+    button {
+        background-color: #17b794;
+        font-family: 'Nunito Sans', sans-serif;
+        color: #01005e;
+    }
 </style>
