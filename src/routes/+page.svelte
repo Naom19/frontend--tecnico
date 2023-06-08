@@ -1,6 +1,9 @@
 <script lang="ts">
-    import { text } from "@sveltejs/kit";
+    // import { text } from "@sveltejs/kit";
     import '../global.css';
+	import { onMount } from 'svelte';
+	import { fetchData } from '../api/dataService';
+
 
     let todos: App.Todo[] = [];
 
@@ -14,6 +17,11 @@
 
     let pending: number;
     $: pending = todos.filter(task => !task.done).length;
+
+
+	onMount(async () => {
+		await fetchData();
+	});
 
 </script>
 
