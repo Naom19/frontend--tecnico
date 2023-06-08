@@ -21,8 +21,10 @@
 
 <div class="navBar">
 	<h1>Task Master</h1>
-	<button id="logInBtn">LogIn</button>
-	<button id="backBtn"></button>
+	<button id="logInBtn">
+		Log In
+	</button>
+	<button id="downlBtn">Download</button>
 </div>
 
 
@@ -43,7 +45,7 @@
 
 <button class="clearBtn" on:click={clear}>Clear completed</button>
 
-<p id="totalTodos">{pending} pending</p>
+<p id="totalTodos">Total {pending} pending | Completed </p>
 
 <p id="quote">"I think it is possible for ordinary people to choose to be extraordinary." - Elon Musk</p>
 
@@ -54,7 +56,6 @@
 		justify-content: space-around;
 		height: 3em;
 		width: 100%;
-		padding-bottom: 0.3em;
 		margin-bottom: 2em;
 		background-color: #2d767f;
 	}
@@ -65,16 +66,21 @@
     }
 	
 	#logInBtn {
-		background-image: ;
 		border: 0;
-		border-radius: 100%;
-		color: #ffffff;
+		background-color: #2d767f;
+		color:#ffffff;
+		font-family: 'Nunito Sans', sans-serif;
+		font-weight: bold;
+		font-size: 0.9em;
 	}
 
-	#backBtn{
-		background-color: transparent;
+	#downlBtn{
 		border: 0;
-		border-radius: 50%;
+		background-color: #2d767f;
+		color:#ecfffb;
+		font-family: 'Nunito Sans', sans-serif;
+		font-weight: bold;
+		font-size: 0.9em;
 	}
     .done {
 		display: flex;
