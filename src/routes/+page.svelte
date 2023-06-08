@@ -21,10 +21,10 @@
 
 <div class="navBar">
 	<h1>Task Master</h1>
-	<button id="logInBtn">
+	<button class="navBtns">
 		Log In
 	</button>
-	<button id="downlBtn">Download</button>
+	<button id="navBtns">Download</button>
 </div>
 
 
@@ -33,7 +33,7 @@
         <input type="checkbox" id="checkIcon"
          bind:checked={todo.done} />
         <input placeholder="Add a new to do..." 
-		 id="todoInput"
+		 class="todoInput"
          value={todo.text} />
 
     </div>
@@ -65,19 +65,10 @@
 		padding-right: 8em;
     }
 	
-	#logInBtn {
+	.navBtns {
 		border: 0;
 		background-color: #2d767f;
 		color:#ffffff;
-		font-family: 'Nunito Sans', sans-serif;
-		font-weight: bold;
-		font-size: 0.9em;
-	}
-
-	#downlBtn{
-		border: 0;
-		background-color: #2d767f;
-		color:#ecfffb;
 		font-family: 'Nunito Sans', sans-serif;
 		font-weight: bold;
 		font-size: 0.9em;
@@ -88,18 +79,13 @@
 		align-items: center;
         opacity: 0.3;
     }
-
-	#checkIcon {
-		background-color: #2d767f;
-		/* image */
-	} 
 	
-	#todoInput {
+	.todoInput {
 		height: 2.5em;
 		width: fit-content;
 		background-color: #ecfffb;
 		border-radius: 2%;
-		border-color: solid #2d767f;
+		border: solid #2d767f;
 		font-size: small;
 		text-align: center;
 		margin: 1em;
