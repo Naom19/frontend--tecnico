@@ -2,12 +2,10 @@
     import { text } from "@sveltejs/kit";
     import '../global.css';
 
-    let todos: App.Todo[] = [
-        { done: false, text: 'This is a To Do example'}
-    ];
+    let todos: App.Todo[] = [];
 
-    function add(): void {
-        todos = todos.concat({ done: false, text: ''});
+    function add(initialText: string): void {
+        todos = todos.concat({ done: false, text: initialText });
     }
 
     function clear(): void {
@@ -24,13 +22,13 @@
 	<button class="navBtns">
 		Log In
 	</button>
-	<button id="navBtns">Download</button>
+	<button class="navBtns">Download</button>
 </div>
 
 
 {#each todos as todo (todo.text)}
     <div class:done = {todo.done}>
-        <input type="checkbox" id="checkIcon"
+        <input type="checkbox" 
          bind:checked={todo.done} />
         <input placeholder="Add a new to do..." 
 		 class="todoInput"
@@ -41,7 +39,7 @@
 {/each}
 
 
-<button class="addBtn" on:click={add}>Add</button>
+<button class="addBtn" on:click= {() => add('')}>Add</button>
 
 <button class="clearBtn" on:click={clear}>Clear completed</button>
 
@@ -84,8 +82,8 @@
 		height: 2.5em;
 		width: fit-content;
 		background-color: #ecfffb;
-		border-radius: 2%;
-		border: solid #2d767f;
+		border-radius: 4%; 
+		border: 1.5px solid #2d767f; /* make the line border more svelte */
 		font-size: small;
 		text-align: center;
 		margin: 1em;
