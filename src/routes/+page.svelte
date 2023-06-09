@@ -26,9 +26,6 @@
 	}
 
 	async function updateTodoStatus(todo:Todo): Promise<void> {
-		console.log("antes de act" + JSON.stringify(todo));
-		//todo.status = !todo.status;
-		console.log("despues de act" + JSON.stringify(todo));
 		await updateTodo(todo);
 	}
 
@@ -59,28 +56,59 @@
 	<button class="navBtns">Download</button>
 </div>
 
-
-{#each todos as todo}
-    <div class:done = {todo.status}>
-        <input type="checkbox" 
-         bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
-        <input bind:value={todo.title} type="text" 
-		placeholder="Add a new to do..." class="todoInput" />
-		<p>{todo.status}</p>
-    </div>
+<section class="gralContainer">
+	{#each todos as todo}
+	<div class="listContainer">
+		<div class:done = {todo.status}>
+			<input type="checkbox" 
+			 bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
+			<input bind:value={todo.title} type="text" 
+			placeholder="Add a new to do..." class="todoInput" />
+		</div>
+	</div>
     
 {/each}
 
+<div class="bottomContainer">
+	<div class="btnsContainer">
+		<button class="addBtn" on:click= {() => add(newTodoTitle)}>Add</button> 
+		<button class="clearBtn" on:click={clear}>Clear completed</button>
+	</div>
+	<p id="totalTodos">Total: {total} | {pending} pending </p>
+	<p id="quote">"I think it is possible for ordinary people to choose to be extraordinary." - Elon Musk</p>
+</div>
 
-<button class="addBtn" on:click= {() => add(newTodoTitle)}>Add</button> 
-
-<button class="clearBtn" on:click={clear}>Clear completed</button>
-
-<p id="totalTodos">Total: {total} | {pending} pending </p>
-
-<p id="quote">"I think it is possible for ordinary people to choose to be extraordinary." - Elon Musk</p>
+</section>
 
 <style>
+
+@media screen and (min-width: 320px) {
+    .gralContainer{
+        width: 35%;
+    }
+    .listContainer {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .gralContainer {
+        width: 35%;
+    }
+    .listContainer {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .gralContainer {
+        width: 45%;
+    }
+    .listContainer {
+        width: 40%;
+    }
+}
+
 
 	.navBar {
 		display: flex;
@@ -104,31 +132,64 @@
 		font-weight: bold;
 		font-size: 0.9em;
 	}
+
+	.listContainer{
+		height: fit-content;
+		width: 20em;
+		padding: 0.5em 1em 1em;
+	}
+
     .done {
-		display: flex;
-		justify-content: center;
-		align-items: center;
         opacity: 0.3;
     }
-	
+
+	.gralContainer{
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		background-color: #2d767f;
+		height: fit-content;
+		max-width: 45%; 
+		border-radius: 10%;
+		border: 2px solid #2d767f;
+		margin-top: 3.5em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.todoInput {
 		height: 2.5em;
 		width: fit-content;
 		background-color: #ecfffb;
 		border-radius: 4%; 
-		border: 1.5px solid #2d767f; /* make the line border more svelte */
+		border: 1.5px solid #2d767f; 
 		font-size: small;
 		text-align: center;
-		margin: 1em;
+		margin: 0.5em;
+		padding-left: 1em;
+		padding-right: 1em;
 	} 
+	.btnsContainer{
+		display: flex;
+		justify-content: center;
+	}
+
+	.bottomContainer{
+		background-color: #ecfffb;
+		border-bottom: 2px solid #2d767f;
+		border-top: 10px solid #ecfffb;
+		border-radius: 2%;
+	}
 
     .addBtn {
         background-color: #2d767f;
         font-family: 'Nunito Sans', sans-serif;
         color: #ffffff;
 		font-weight: bold;
-		border-radius: 7%;
+		border-radius: 10%;
 		border: 0;
+		margin: 1em;
+		padding: 0.5em;
     }
 
 	.clearBtn{
@@ -136,18 +197,24 @@
 		font-family: 'Nunito Sans', sans-serif;
 		color: #ffffff;
 		font-weight: bold;
-		border-radius: 7%;
+		border-radius: 10%;
 		border: 0;
+		margin: 1em;
 	}
 
 	#totalTodos{
 		font-size: medium;
 		color: #1e6262;
+		padding-left: 1.5em;
 	}
 
 	#quote {
 		font-style: italic;
+		font-weight: bold;
 		color: #1e6262;
+		padding: 1em;
+		border-bottom: #2d767f;
+		border-radius: 15%;
 	}
 
 
