@@ -8,7 +8,6 @@ export async function addTodo(todo: Todo) {
         if (error) {
             throw new Error(error.message);
         }
-        console.log('Fetched data', data);
         return data;
     } catch (error) {
         console.error('There was an error fetching data (adding todo):', error);
@@ -18,12 +17,10 @@ export async function addTodo(todo: Todo) {
 
 export async function updateTodo(todo: Todo) {
     try {
-        console.log(JSON.stringify(todo));
         const { data, error } = await supabase.from('todolist').update(todo).match({ id: todo.id });
         if (error) {
             throw new Error(error.message);
         }
-        console.log ('Updated data:', data);
         return data; 
     }   catch (error) {
         console.error('Error updating todo: ', error);

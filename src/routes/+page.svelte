@@ -26,9 +26,6 @@
 	}
 
 	async function updateTodoStatus(todo:Todo): Promise<void> {
-		console.log("antes de act" + JSON.stringify(todo));
-		//todo.status = !todo.status;
-		console.log("despues de act" + JSON.stringify(todo));
 		await updateTodo(todo);
 	}
 
