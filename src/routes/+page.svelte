@@ -11,7 +11,7 @@
     import '../global.css';
 	import { onMount } from 'svelte';
 	import { addTodo, updateTodo, clearCompletedTodos, fetchTodos } from '../api/dataService';
-	import { v4 as uuidv4 } from 'C:/Users/codeo/workspace/frontend/frontend-tecnico/node_modules/uuid';
+	import { v4 as uuidv4 } from 'uuid';
 
     let todos: Todo[] = [];
 	let newTodoTitle = '';
@@ -58,11 +58,11 @@
 </div>
 
 
-{#each todos as todo (todo.title)}
+{#each todos as todo}
     <div class:done = {todo.status}>
         <input type="checkbox" 
          bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
-        <input bind:value={newTodoTitle} type="text" 
+        <input bind:value={todo.title} type="text" 
 		placeholder="Add a new to do..." class="todoInput" />
     </div>
     
