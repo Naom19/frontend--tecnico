@@ -18,7 +18,7 @@ export async function addTodo(todo: Todo) {
 
 export async function updateTodo(todo: Todo) {
     try {
-        const { data, error } = await supabase.from('todoList Table').update(todo).match({ id: todo.id });
+        const { data, error } = await supabase.from('todolist').update(todo).match({ id: todo.id });
         if (error) {
             throw new Error(error.message);
         }
@@ -32,7 +32,7 @@ export async function updateTodo(todo: Todo) {
 
 export async function clearCompletedTodos() {
     try {
-      const { data, error } = await supabase.from('todoList Table').delete().match({ status: true });
+      const { data, error } = await supabase.from('todolist').delete().match({ status: true });
       if (error) {
         throw new Error(error.message);
       }
@@ -43,13 +43,13 @@ export async function clearCompletedTodos() {
     }
   }
   
-export async function fetchTodos() {
+export async function fetchTodos(): Promise<Todo[]> {
     try {
-        const {data, error} = await supabase.from('todoList').select('*');
+        const {data, error} = await supabase.from('todolist').select('*');
         if (error) {
             throw new Error(error.message);
         }
-        return data || [];
+        return data as Todo[];
     } catch (error) {
         console.error('There was an error fetching data: ', error);
         return [];
