@@ -84,19 +84,19 @@
 
 @media screen and (min-width: 320px) {
     .gralContainer{
-        width: 35%;
+        width: 45%;
     }
     .listContainer {
-        width: 30%;
+        width: 40%;
     }
 }
 
 @media screen and (min-width: 700px) {
     .gralContainer {
-        width: 35%;
+        width: 45%;
     }
     .listContainer {
-        width: 30%;
+        width: 40%;
     }
 }
 
@@ -152,9 +152,10 @@
 		max-width: 45%; 
 		border-radius: 10%;
 		border: 2px solid #2d767f;
-		margin-top: 3.5em;
+		margin-top: 5em;
 		margin-left: auto;
 		margin-right: auto;
+		padding: 1em;
 	}
 
 	.todoInput {
@@ -178,7 +179,7 @@
 		background-color: #ecfffb;
 		border-bottom: 2px solid #2d767f;
 		border-top: 10px solid #ecfffb;
-		border-radius: 2%;
+		border-radius: 5%;
 	}
 
     .addBtn {
