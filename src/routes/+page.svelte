@@ -1,22 +1,25 @@
-<script lang="ts">
-    import { text } from "@sveltejs/kit";
-    import '../global.css';
-	import { onMount } from 'svelte';
-	import { addTodo, updateTodo, clearCompletedTodos } from '../api/dataService';
-
-	interface Todo {
-		id:number;
+<script context="module" lang="ts">
+	export interface Todo {
+		id: string;
 		title: string;
 		status: boolean;
 	}
+ </script>
+
+<script lang="ts">
+    // import { text } from "@sveltejs/kit";
+    import '../global.css';
+	import { onMount } from 'svelte';
+	import { addTodo, updateTodo, clearCompletedTodos, fetchTodos } from '../api/dataService';
 
     let todos: Todo[] = [];
 	let newTodoTitle = '';
 
-    async function add(title: string): void {
-		const newTodo: Todo = {id: Date.now(), title: title, status: false};
+    async function add(title: string): Promise<void> {
+		const newTodo: Todo = {id: ,title: title, status: false};
 		todos = todos.concat(newTodo);
 		await addTodo(newTodo);
+		newTodoTitle='';
 	}
 
 	async function updateTodoStatus(todo:Todo): Promise<void> {
@@ -35,10 +38,11 @@
 	let total: number;
 	$: total = todos.length;
 
-
 	onMount(async () => {
-		todos = await fetchTodos();
+		const fetchedTodos = await fetchTodos();
+		todos = fetchedTodos;
 	});
+
 
 </script>
 
@@ -57,13 +61,12 @@
          bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
         <input bind:value={newTodoTitle} type="text" 
 		placeholder="Add a new to do..." class="todoInput" />
-
     </div>
     
 {/each}
 
 
-<button class="addBtn" on:click= {() => add('')}>Add</button>
+<button class="addBtn" on:click= {() => add(newTodoTitle)}>Add</button> 
 
 <button class="clearBtn" on:click={clear}>Clear completed</button>
 
