@@ -11,13 +11,14 @@
     import '../global.css';
 	import { onMount } from 'svelte';
 	import { addTodo, updateTodo, clearCompletedTodos, fetchTodos } from '../api/dataService';
-	import { v4 as uuidv4 } from 'uuid';
+	import { v4 as uuidv4 } from 'C:/Users/codeo/workspace/frontend/frontend-tecnico/node_modules/uuid';
 
     let todos: Todo[] = [];
 	let newTodoTitle = '';
-	let idUUID = uuidv4(); // creates UUID randomly
+	
 
     async function add(title: string): Promise<void> {
+		const idUUID = uuidv4(); // creates UUID randomly
 		const newTodo: Todo = {id: idUUID,title: title, status: false};
 		todos = todos.concat(newTodo);
 		await addTodo(newTodo);
