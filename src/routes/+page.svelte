@@ -26,7 +26,9 @@
 	}
 
 	async function updateTodoStatus(todo:Todo): Promise<void> {
-		todo.status = !todo.status;
+		console.log("antes de act" + JSON.stringify(todo));
+		//todo.status = !todo.status;
+		console.log("despues de act" + JSON.stringify(todo));
 		await updateTodo(todo);
 	}
 
@@ -64,6 +66,7 @@
          bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
         <input bind:value={todo.title} type="text" 
 		placeholder="Add a new to do..." class="todoInput" />
+		<p>{todo.status}</p>
     </div>
     
 {/each}
@@ -73,7 +76,7 @@
 
 <button class="clearBtn" on:click={clear}>Clear completed</button>
 
-<p id="totalTodos">Total: {total} completed | {pending} pending </p>
+<p id="totalTodos">Total: {total} | {pending} pending </p>
 
 <p id="quote">"I think it is possible for ordinary people to choose to be extraordinary." - Elon Musk</p>
 
