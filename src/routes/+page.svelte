@@ -1,26 +1,43 @@
 <script lang="ts">
-    // import { text } from "@sveltejs/kit";
+    import { text } from "@sveltejs/kit";
     import '../global.css';
 	import { onMount } from 'svelte';
-	import { fetchData } from '../api/dataService';
+	import { addTodo, updateTodo, clearCompletedTodos } from '../api/dataService';
 
+	interface Todo {
+		id:number;
+		title: string;
+		status: boolean;
+	}
 
-    let todos: App.Todo[] = [];
+    let todos: Todo[] = [];
+	let newTodoTitle = '';
 
-    function add(initialText: string): void {
-        todos = todos.concat({ done: false, text: initialText });
-    }
+    async function add(title: string): void {
+		const newTodo: Todo = {id: Date.now(), title: title, status: false};
+		todos = todos.concat(newTodo);
+		await addTodo(newTodo);
+	}
 
-    function clear(): void {
-        todos = todos.filter((task:App.Todo) => !task.done);
+	async function updateTodoStatus(todo:Todo): Promise<void> {
+		todo.status = !todo.status;
+		await updateTodo(todo);
+	}
+
+    async function clear(): Promise<void> {
+        todos = todos.filter((task: Todo) => !task.status);
+		await clearCompletedTodos();
     }
 
     let pending: number;
-    $: pending = todos.filter(task => !task.done).length;
+    $: pending = todos.filter(task => !task.status).length;
+
+	let total: number;
+	$: total = todos.length;
 
 
 	onMount(async () => {
-		await fetchData();
+		todos = await fetchTodos();
 	});
 
 </script>
@@ -34,13 +51,12 @@
 </div>
 
 
-{#each todos as todo (todo.text)}
-    <div class:done = {todo.done}>
+{#each todos as todo (todo.title)}
+    <div class:done = {todo.status}>
         <input type="checkbox" 
-         bind:checked={todo.done} />
-        <input placeholder="Add a new to do..." 
-		 class="todoInput"
-         value={todo.text} />
+         bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
+        <input bind:value={newTodoTitle} type="text" 
+		placeholder="Add a new to do..." class="todoInput" />
 
     </div>
     
@@ -51,7 +67,7 @@
 
 <button class="clearBtn" on:click={clear}>Clear completed</button>
 
-<p id="totalTodos">Total {pending} pending | Completed </p>
+<p id="totalTodos">Total: {total} completed | {pending} pending </p>
 
 <p id="quote">"I think it is possible for ordinary people to choose to be extraordinary." - Elon Musk</p>
 
