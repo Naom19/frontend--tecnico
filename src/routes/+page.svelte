@@ -58,11 +58,11 @@
 </div>
 
 
-{#each todos as todo (todo.title)}
+{#each todos as todo}
     <div class:done = {todo.status}>
         <input type="checkbox" 
          bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
-        <input bind:value={newTodoTitle} type="text" 
+        <input bind:value={todo.title} type="text" 
 		placeholder="Add a new to do..." class="todoInput" />
     </div>
     
