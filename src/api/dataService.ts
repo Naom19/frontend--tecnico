@@ -18,6 +18,7 @@ export async function addTodo(todo: Todo) {
 
 export async function updateTodo(todo: Todo) {
     try {
+        console.log(JSON.stringify(todo));
         const { data, error } = await supabase.from('todolist').update(todo).match({ id: todo.id });
         if (error) {
             throw new Error(error.message);
