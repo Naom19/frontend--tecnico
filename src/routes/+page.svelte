@@ -46,7 +46,7 @@
 </script>
 
 <div class="navBar">
-	<h1>Task Master</h1>
+	<h1 class="tmLogo">Task Master</h1>
 	<button class="navBtns"> Log In </button>
 	<button class="navBtns">Download</button>
 </div>
@@ -91,33 +91,66 @@
 </section>
 
 <style>
-	@media screen and (min-width: 320px) {
+	@media screen and (width < 36em) {
+		.navBar {
+			width: 100%;
+		}
+		.tmLogo {
+			width: 1%;
+		}
+
+		.navBtns{
+			width: fit-content;
+		}
+		.gralContainer {
+			width: 100%;
+		}
+		.listContainer {
+			width: fit-content;
+		}
+
+		.checkbox {
+			width: 15%;
+		}
+
+		.todoInput {
+			width: 15%;
+		}
+
+		.btnsContainer {
+			width: auto;
+		}
+
+		.clearBtn {
+			width: 10%;
+		}
+
+		.addBtn {
+			width: 35%;
+		}
+
+		#quote {
+			width: fit-content;
+		}
+	}
+
+	@media screen and (min-width: 48em) {
 		.navBar {
 			width: 100%;
 		}
 		.gralContainer {
-			width: 60%;
+			width: 45%;
 		}
 		.listContainer {
 			width: 45%;
 		}
 
-
-	}
-
-	@media screen and (min-width: 700px) {
-		.navBar {
-			width: 100%;
-		}
-		.gralContainer {
-			width: 45%;
-		}
-		.listContainer {
-			width: 45%;
+		.todoInput {
+			width: auto;
 		}
 	}
 
-	@media screen and (min-width: 1000px) {
+	@media screen and (min-width: 62em) {
 		.navBar {
 			width: 100%;
 		}
@@ -185,7 +218,7 @@
 		height: 2.5em;
 		width: 15%;
 		background-color: #ecfffb;
-		border-radius: 5px;
+		border-radius: 7px;
 		border: 1.5px solid #2d767f;
 		font-size: small;
 		text-align: center;
@@ -198,7 +231,8 @@
 		position: relative;
 		display: inline-block;
 		vertical-align: middle;
-		margin-right: 1.25em;
+		margin-right: 1em;
+		margin-top: 0.5em;
 	}
 
 	.checkbox input[type='checkbox'] {
@@ -267,9 +301,9 @@
 		background-color: #ecfffb;
 		border-bottom: 2px solid #2d767f;
 		border-top: 10px solid #ecfffb;
-		border-radius: 5px;
+		border-radius: 10px;
 		margin-top: 1em;
-		margin-bottom: -1em;
+		margin-bottom: 0.1em;
 	}
 
 	.addBtn {
