@@ -60,7 +60,7 @@
 	{#each todos as todo}
 	<div class="listContainer">
 		<div class:done = {todo.status}>
-			<input type="checkbox" 
+			<input type="checkbox" class="checkIcon"
 			 bind:checked={todo.status} on:change={() => updateTodoStatus(todo)} />
 			<input bind:value={todo.title} type="text" 
 			placeholder="Add a new to do..." class="todoInput" />
@@ -82,30 +82,41 @@
 
 <style>
 
+
 @media screen and (min-width: 320px) {
+	.navBar{
+		width: 100%;
+	}
     .gralContainer{
         width: 45%;
     }
     .listContainer {
-        width: 40%;
+        width: 45%;
     }
 }
 
 @media screen and (min-width: 700px) {
+	.navBar{
+		width: 100%;
+	}
     .gralContainer {
         width: 45%;
     }
     .listContainer {
-        width: 40%;
+        width: 45%;
     }
 }
 
 @media screen and (min-width: 1000px) {
+
+	.navBar{
+		width: 100%;
+	}
     .gralContainer {
         width: 45%;
     }
     .listContainer {
-        width: 40%;
+        width: 45%;
     }
 }
 
@@ -134,8 +145,9 @@
 	}
 
 	.listContainer{
+		display: flex;
+		justify-content: center;
 		height: fit-content;
-		width: 20em;
 		padding: 0.5em 1em 1em;
 	}
 
@@ -156,20 +168,27 @@
 		margin-left: auto;
 		margin-right: auto;
 		padding: 1em;
+		box-sizing: border-box;
+		box-shadow: 0.5em 0.5em 3em #1e6262;
 	}
 
 	.todoInput {
+		position: absolute;
 		height: 2.5em;
-		width: fit-content;
+		width: 15%;
 		background-color: #ecfffb;
 		border-radius: 4%; 
 		border: 1.5px solid #2d767f; 
 		font-size: small;
 		text-align: center;
-		margin: 0.5em;
+		margin: auto;
 		padding-left: 1em;
 		padding-right: 1em;
 	} 
+
+	.checkIcon{
+		margin: 1em;
+	}
 	.btnsContainer{
 		display: flex;
 		justify-content: center;
@@ -180,6 +199,8 @@
 		border-bottom: 2px solid #2d767f;
 		border-top: 10px solid #ecfffb;
 		border-radius: 5%;
+		margin-top: 1em;
+		margin-bottom: -1em;
 	}
 
     .addBtn {
@@ -198,9 +219,12 @@
 		font-family: 'Nunito Sans', sans-serif;
 		color: #ffffff;
 		font-weight: bold;
-		border-radius: 10%;
+		border-radius: 4%;
+		width: 9em;
+		height: 2.6em;
 		border: 0;
-		margin: 1em;
+		margin-top: 0.87em;
+		
 	}
 
 	#totalTodos{
