@@ -2,8 +2,10 @@
 	"name": "frontend-tecnico",
 	"version": "0.0.1",
 	"scripts": {
+		"start": "vite dev",
 		"dev": "vite dev",
 		"build": "vite build",
+		"heroku-postbuild": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -15,6 +17,7 @@
 		"@fontsource/fira-mono": "^4.5.10",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.5.0",
 		"@types/cookie": "^0.5.1",
 		"@types/uuid": "^9.0.2",
@@ -35,6 +38,10 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.24.0",
+		"serve": "^14.2.0",
 		"uuid": "^9.0.0"
+	},
+	"engines": {
+		"node": "18.16.0"
 	}
 }
