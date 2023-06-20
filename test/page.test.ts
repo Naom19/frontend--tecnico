@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import * as dataService from '../api/dataService';
 import { render, fireEvent } from '@testing-library/svelte';
 import TodoPage from '../+page.svelte';
+import add from '../+page.svelte';
 
 describe('TodoPage', () => {
   it('should call addTodo when add is triggered', async () => {
