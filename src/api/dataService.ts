@@ -1,6 +1,8 @@
 import { supabase } from '../lib/supabaseService';
 // create a fetchTodos function, that fetches all the todos from the database
 import type { Todo } from '../routes/+page.svelte';
+import { vi } from 'vitest';
+import * as dataService from '../lib/supabaseService';
 
 export async function addTodo(todo: Todo) {
     try {
@@ -40,7 +42,7 @@ export async function clearCompletedTodos() {
       return null;
     }
   }
-  
+
 export async function fetchTodos(): Promise<Todo[]> {
     try {
         const {data, error} = await supabase.from('todolist').select('*');
@@ -53,3 +55,5 @@ export async function fetchTodos(): Promise<Todo[]> {
         return [];
     }
 }
+
+// vi.spyOn(dataService, 'addTodo').mockResolvedValue({ data: "Mock Data addTodo"});
