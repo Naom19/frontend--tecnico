@@ -12,6 +12,7 @@
 	import { onMount } from 'svelte';
 	import { addTodo, updateTodo, clearCompletedTodos, fetchTodos } from '../api/dataService';
 	import { v4 as uuidv4 } from 'uuid';
+	import { add, updateTodoStatus, clear } from '../src/test/test.ts';
 
 	let todos: Todo[] = [];
 	let newTodoTitle = '';
